@@ -11,6 +11,22 @@ class StandardController extends Controller
     public function index()
     {
         $classes = Classes::all()->toArray();
-        return Response::json($classes);
+        $toSend = [];
+        if(count($classes)!=0)
+        {
+        	$toSend = array(
+        		"success" => true,
+        		"data" => $classes,
+        		"message" => "Tutorials available for above classes"
+        	);
+        }
+        else{
+        	$toSend = array(
+        		"success" => false,
+        		"data" => $classes,
+        		"message" => "Nothing retrieved"
+        	);
+        }
+        return Response::json($toSend);
     }
 }

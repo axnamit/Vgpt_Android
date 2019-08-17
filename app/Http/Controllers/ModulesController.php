@@ -11,6 +11,22 @@ class ModulesController extends Controller
     public function index($subject_id)
     {
         $chapters = Modules::where('subject_id', $subject_id)->get()->toArray();
-        return Response::json($chapters);
+        $toSend = [];
+        if(count($chapters)!=0)
+        {
+        	$toSend = array(
+        		"success" => true,
+        		"data" => $chapters,
+        		"message" => "Chapters availbale for selected subject"
+        	);
+        }
+        else{
+        	$toSend = array(
+        		"success" => false,
+        		"data" => $chapters,
+        		"message" => "Nothing recieved"
+        	);
+        }
+        return Response::json($toSend);
     }
 }

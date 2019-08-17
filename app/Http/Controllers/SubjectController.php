@@ -11,6 +11,22 @@ class SubjectController extends Controller
     public function index($class_id)
     {
         $subjects = Subjects::where('class_id', $class_id)->get()->toArray();
-        return Response::json($subjects);
+        $toSend = [];
+        if(count($subjects)!=0)
+        {
+        	$toSend = array(
+        		"success" => true,
+        		"data" => $subjects,
+        		"message" => "Subjects availbale for selected class"
+        	);
+        }
+        else{
+        	$toSend = array(
+        		"success" => false,
+        		"data" => $subjects,
+        		"message" => "Nothing recieved"
+        	);
+        }
+        return Response::json($toSend);
     }
 }

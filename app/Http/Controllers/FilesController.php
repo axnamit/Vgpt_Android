@@ -11,6 +11,22 @@ class FilesController extends Controller
      public function index($module_id, $lang)
      {
          $files = Files::where('module_id', $module_id)->where('medium', $lang)->get()->toArray();
-         return Response::json($files);
+         $toSend = [];
+         if(count($files)!=0)
+         {
+        	$toSend = array(
+        		"success" => true,
+        		"data" => $files,
+        		"message" => "Files available for selected module and medium"
+        	);
+         }
+         else{
+        	$toSend = array(
+        		"success" => false,
+        		"data" => $files,
+        		"message" => "Nothing recieved"
+        	);
+         }
+        return Response::json($toSend);
      }
 }

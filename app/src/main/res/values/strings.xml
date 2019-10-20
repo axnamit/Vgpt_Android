@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">VGPT</string>
-    <string name="choose_class">Choose Class</string>
-    <string name="base_url"/>
+	<string name="app_name">VGPT</string>
+	<string name="choose_class">Choose Class</string>
+	<string name="base_url">http://vgptclasses.000webhostapp.com/api/</string>
+	<string name="choose_subject">Choose Subject</string>
+	<string name="Physics">physics</string>
+	<string name="select_chapter">Select Chapter</string>
+	<string name="medium">Choose Medium</string>
 </resources>

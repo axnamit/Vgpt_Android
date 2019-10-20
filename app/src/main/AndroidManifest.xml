@@ -1,28 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-		  package="com.optimistic.vgpt">
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-
-    <application
+		package="com.optimistic.vgpt">
+	
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	
+	<application
 			android:allowBackup="true"
 			android:icon="@mipmap/ic_launcher"
 			android:label="@string/app_name"
 			android:roundIcon="@mipmap/ic_launcher_round"
 			android:supportsRtl="true"
-			android:theme="@style/AppTheme">
-        <activity android:name=".ChooseClass2">
-        </activity>
-        <activity
+			android:theme="@style/AppTheme"
+			android:usesCleartextTraffic="true">
+		<activity android:name=".choose_medium.ChooseMedium"></activity>
+		<activity android:name=".view_pdf.ViewPdfPage" />
+		<activity android:name=".modules_subject.Modules" />
+		<activity android:name=".subject_list.SubjectList" />
+		<activity android:name=".ChooseSubjects.ChooseSubjectsActivity" />
+		<activity android:name=".base_class_menu.BaseActivity" />
+		<activity android:name=".chooseClass.ChooseClass2" />
+		<activity
 				android:name=".MainActivity"
 				android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-    </application>
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+	</application>
 
 </manifest>

@@ -7,9 +7,10 @@ import com.google.gson.annotations.SerializedName;
 
 public class ChooseClassPojo {
 
-    @SerializedName("success")
+
+    @SerializedName("status")
     @Expose
-    private Boolean success;
+    private Boolean status;
     @SerializedName("data")
     @Expose
     private List<Datum> data = null;
@@ -17,12 +18,12 @@ public class ChooseClassPojo {
     @Expose
     private String message;
 
-    public Boolean getSuccess() {
-        return success;
+    public Boolean getStatus() {
+        return status;
     }
 
-    public void setSuccess(Boolean success) {
-        this.success = success;
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 
     public List<Datum> getData() {

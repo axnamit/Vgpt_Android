@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.animation.AnimationUtils
+import com.google.android.gms.ads.MobileAds
 import kotlinx.android.synthetic.main.activity_main.*
 import com.optimistic.vgpt.api_client.InterceptorHTTPClientCreator
 import com.optimistic.vgpt.chooseClass.ChooseClass2
@@ -17,6 +18,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         InterceptorHTTPClientCreator.createInterceptorHTTPClient(this)
+
+        MobileAds.initialize(this) {}
+
         //val service = RetrofitSdk.Builder().build(this).service
 
         val animation1 = AnimationUtils.loadAnimation(

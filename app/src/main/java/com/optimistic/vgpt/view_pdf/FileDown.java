@@ -6,10 +6,9 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class FileDown {
-
-    @SerializedName("success")
+    @SerializedName("status")
     @Expose
-    private Boolean success;
+    private Boolean status;
     @SerializedName("data")
     @Expose
     private List<Datum> data = null;
@@ -17,12 +16,12 @@ public class FileDown {
     @Expose
     private String message;
 
-    public Boolean getSuccess() {
-        return success;
+    public Boolean getStatus() {
+        return status;
     }
 
-    public void setSuccess(Boolean success) {
-        this.success = success;
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 
     public List<Datum> getData() {
@@ -40,5 +39,6 @@ public class FileDown {
     public void setMessage(String message) {
         this.message = message;
     }
+
 
 }

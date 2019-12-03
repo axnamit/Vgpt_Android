@@ -38,7 +38,7 @@ public class ChooseClassAdapter extends RecyclerView.Adapter<ChooseClassAdapter.
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         final Datum datum=data.get(position);
-        holder.button.setText(datum.getClass_());
+        holder.button.setText(datum.getClassName());
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

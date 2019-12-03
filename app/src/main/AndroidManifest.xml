@@ -14,10 +14,13 @@
 			android:supportsRtl="true"
 			android:theme="@style/AppTheme"
 			android:usesCleartextTraffic="true">
+		<meta-data
+				android:name="com.google.android.gms.ads.APPLICATION_ID"
+				android:value="ca-app-pub-3940256099942544~3347511713"/>
+		
 		<activity android:name=".choose_medium.ChooseMedium"></activity>
 		<activity android:name=".view_pdf.ViewPdfPage" />
 		<activity android:name=".modules_subject.Modules" />
-		<activity android:name=".subject_list.SubjectList" />
 		<activity android:name=".ChooseSubjects.ChooseSubjectsActivity" />
 		<activity android:name=".base_class_menu.BaseActivity" />
 		<activity android:name=".chooseClass.ChooseClass2" />

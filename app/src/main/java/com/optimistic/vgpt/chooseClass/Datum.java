@@ -9,15 +9,9 @@ public class Datum {
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("class")
+    @SerializedName("class_name")
     @Expose
-    private String _class;
-    @SerializedName("created_at")
-    @Expose
-    private Object createdAt;
-    @SerializedName("updated_at")
-    @Expose
-    private Object updatedAt;
+    private String className;
 
     public Integer getId() {
         return id;
@@ -27,28 +21,11 @@ public class Datum {
         this.id = id;
     }
 
-    public String getClass_() {
-        return _class;
+    public String getClassName() {
+        return className;
     }
 
-    public void setClass_(String _class) {
-        this._class = _class;
+    public void setClassName(String className) {
+        this.className = className;
     }
-
-    public Object getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Object createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Object getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Object updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
 }

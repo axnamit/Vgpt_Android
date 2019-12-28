@@ -12,6 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.optimistic.vgpt.R;
+import com.optimistic.vgpt.choose_medium.ChooseMedium;
 import com.optimistic.vgpt.modules_subject.Modules;
 import com.optimistic.vgpt.utility.Singleton;
 
@@ -36,13 +37,14 @@ public class ChooseSubjectAdapter extends RecyclerView.Adapter<ChooseSubjectAdap
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         final Datum datum = data.get(position);
-        holder.button.setText(datum.getSubjectName());
+        holder.button.setText(datum.getSubject());
         //String classId=);
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, Modules.class);
+                Intent intent = new Intent(context, ChooseMedium.class);
                 Singleton.getInstance().setSubjectId(datum.getId());
+                Singleton.getInstance().setLanguage(datum.getLanguage());
                 //intent.putExtra("subId",String.valueOf(datum.getClassId()));
                 context.startActivity(intent);
             }

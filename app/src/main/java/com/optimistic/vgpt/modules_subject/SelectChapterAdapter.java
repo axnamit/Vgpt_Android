@@ -6,14 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.optimistic.vgpt.R;
-import com.optimistic.vgpt.choose_medium.ChooseMedium;
 import com.optimistic.vgpt.utility.Singleton;
 import com.optimistic.vgpt.view_pdf.ViewPdfPage;
 
@@ -39,10 +37,10 @@ public class SelectChapterAdapter extends RecyclerView.Adapter<SelectChapterAdap
     @Override
     public void onBindViewHolder(@NonNull MyViewholder holder, int position) {
         Datum datum=datam.get(position);
-        holder.button.setText(datum.getModuleName());
+        holder.button.setText(datum.getModule());
 
         holder.button.setOnClickListener(View->{
-            Intent intent=new Intent(context, ChooseMedium.class);
+            Intent intent=new Intent(context, ViewPdfPage.class);
             Singleton.getInstance().setModule(datum.getId());
             System.out.println("id"+datum.getId()+"  "+"subjectId"+datum.getSubjectId());
             //intent.putExtra("module_id",String.valueOf(datum.getId()));

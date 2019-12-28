@@ -1,16 +1,10 @@
 package com.optimistic.vgpt.view_pdf;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
-
-import android.app.ProgressDialog;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
-import android.webkit.WebView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.barteksc.pdfviewer.PDFView;
 import com.google.android.gms.ads.AdListener;
@@ -27,23 +21,15 @@ import com.optimistic.vgpt.utility.Singleton;
 
 import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.Url;
 
 
 public class ViewPdfPage extends AppCompatActivity {
@@ -51,8 +37,11 @@ public class ViewPdfPage extends AppCompatActivity {
     //private String uril;
 
     Service service;
-    private String id;
-    private String mediumId;
+    private String classs, subject, module_id;
+    //private String mediumId;
+    /*class:10
+subject:25
+module:52*/
     KProgressHUD hud;
     private PDFView pdfView;
     private String uril;
@@ -81,20 +70,20 @@ public class ViewPdfPage extends AppCompatActivity {
             @Override
             public void onAdLoaded() {
                 showInterstitial();
-                Toast.makeText(ViewPdfPage.this, "onAdLoaded()", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ViewPdfPage.this, "onAdLoaded()", Toast.LENGTH_SHORT).show();
                 // mInterstitialAd.show();
             }
 
             @Override
             public void onAdFailedToLoad(int errorCode) {
-                Toast.makeText(ViewPdfPage.this,
+               /* Toast.makeText(ViewPdfPage.this,
                         "onAdFailedToLoad() with error code: " + errorCode,
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_SHORT).show();*/
             }
 
             @Override
             public void onAdClosed() {
-                Toast.makeText(ViewPdfPage.this, "add is closed", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(ViewPdfPage.this, "add is closed", Toast.LENGTH_SHORT).show();
                 // startGame();
             }
         });
@@ -108,8 +97,9 @@ public class ViewPdfPage extends AppCompatActivity {
 /*
         browser = (WebView) findViewById(R.id.webView);
         browser.getSettings().setJavaScriptEnabled(true);*/
-        id = String.valueOf(Singleton.getInstance().getModule());
-        mediumId = String.valueOf(Singleton.getInstance().getMedium());
+        classs = String.valueOf(Singleton.getInstance().getClassId());
+        subject = String.valueOf(Singleton.getInstance().getSubjectId());
+        module_id = String.valueOf(Singleton.getInstance().getModule());
        /* Bundle extras = getIntent().getExtras();
         if (extras != null) {
             id = getIntent().getExtras().getString("module_id");
@@ -137,12 +127,12 @@ public class ViewPdfPage extends AppCompatActivity {
         if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
             mInterstitialAd.show();
         } else {
-            Toast.makeText(this, "Ad did not load", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "Ad did not load", Toast.LENGTH_SHORT).show();
             //startGame();
         }
     }
 
-    private void startGame() {
+   /* private void startGame() {
         // Request a new ad if one isn't already loaded, hide the button, and kick off the timer.
         if (!mInterstitialAd.isLoading() && !mInterstitialAd.isLoaded()) {
             AdRequest adRequest = new AdRequest.Builder().build();
@@ -151,13 +141,16 @@ public class ViewPdfPage extends AppCompatActivity {
 
         //retryButton.setVisibility(View.INVISIBLE);
         //resumeGame(GAME_LENGTH_MILLISECONDS);
-    }
+    }*/
 
 
     private void urilFecth() {
         HashMap<String, String> files = new HashMap<>();
-        files.put("module_id", id);
-        files.put("lang", mediumId);
+
+
+        files.put("class", classs);
+        files.put("subject", subject);
+        files.put("module", module_id);
 
         service.fileDownload(files).enqueue(new Callback<FileDown>() {
             @Override
@@ -167,12 +160,12 @@ public class ViewPdfPage extends AppCompatActivity {
                         if (response.body().getStatus()) {
                             if (response.body().getData() != null) {
                                 if (response.body().getData() != null) {
-                                    uril = response.body().getData().get(0).getFilePath();
+                                    uril = response.body().getData().get(0).getFile();
                                     new RetrivePDFStream().execute(uril);
                                     //view_file(uril);
                                     //browser.loadUrl(uril);
                                     //new RetrivePDFStream().execute(uril);
-                                    hud.dismiss();
+                                    //hud.dismiss();
                                 } else {
                                     hud.dismiss();
                                     Toast.makeText(ViewPdfPage.this, "file not found ", Toast.LENGTH_SHORT).show();
@@ -196,20 +189,7 @@ public class ViewPdfPage extends AppCompatActivity {
 
     }
 
-    /*private void view_file(String uril) {
-        try {
-            URL uri = new URL(uril);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        Uri uri = Uri.parse(uril);
-        pdfView.fromUri(uri)
-                .swipeHorizontal(true)
 
-
-                // toggle night mode
-                .load();
-    }*/
     private class RetrivePDFStream extends AsyncTask<String, Void, InputStream> {
 
         @Override
@@ -232,130 +212,13 @@ public class ViewPdfPage extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(InputStream inputStream) {
-            Toast.makeText(ViewPdfPage.this, "" + inputStream.toString(), Toast.LENGTH_SHORT).show();
+           // Toast.makeText(ViewPdfPage.this, "" + inputStream.toString(), Toast.LENGTH_SHORT).show();
 
             pdfView.fromStream(inputStream).load();
+            hud.dismiss();
+
         }
     }
-    /*class RetrivePDFStream extends AsyncTask<String, Void, InputStream> {
-
-        @Override
-        protected InputStream doInBackground(String... strings) {
-            InputStream inputStream = null;
-            try {
-                URL url = new URL(uril);
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                if (urlConnection.getResponseCode() == 200) {
-                    inputStream = new BufferedInputStream(urlConnection.getInputStream());
-                }
-
-            } catch (IOException e) {
-                return null;
-            }
-            return inputStream;
-        }
-
-        @Override
-        protected void onPostExecute(InputStream inputStream) {
-
-            pdfView.fromStream(inputStream).load();
-        }
-    }*/
-/*
-    private class DownloadFile extends AsyncTask<String, String, String> {
-
-        private ProgressDialog progressDialog;
-        private String fileName;
-        private String folder;
-        private boolean isDownloaded;
-
-        */
-/**
- * Before starting background thread
- * Show Progress Bar Dialog
- *//*
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            this.progressDialog = new ProgressDialog(ViewPdfPage.this);
-            this.progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-            this.progressDialog.setCancelable(false);
-            this.progressDialog.show();
-        }
-
-        */
-/**
- * Downloading file in background thread
- *//*
-
-        @Override
-        protected String doInBackground(String... f_url) {
-            int count;
-            try {
-                URL url = new URL(f_url[0]);
-                URLConnection connection = url.openConnection();
-                connection.connect();
-                // getting file length
-                int lengthOfFile = connection.getContentLength();
-
-
-                // input stream to read file - with 8k buffer
-                InputStream input = new BufferedInputStream(url.openStream());
-
-                String timestamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss", Locale.US).format(new Date());
-
-                //Extract file name from URL
-                fileName = f_url[0].substring(f_url[0].lastIndexOf('/') + 1, f_url[0].length());
-
-                //Append timestamp to file name
-                fileName = timestamp + "_" + fileName;
-
-                //External directory path to save file
-                folder = Environment.
-                folder = Environment.getExternalStorageDirectory() + File.separator + "androiddeft/";
-
-                //Create androiddeft folder if it does not exist
-                File directory = new File(folder);
-
-                if (!directory.exists()) {
-                    directory.mkdirs();
-                }
-
-                // Output stream to write file
-                OutputStream output = new FileOutputStream(folder + fileName);
-
-                byte data[] = new byte[1024];
-
-                long total = 0;
-
-                while ((count = input.read(data)) != -1) {
-                    total += count;
-                    // publishing the progress....
-                    // After this onProgressUpdate will be called
-                    publishProgress("" + (int) ((total * 100) / lengthOfFile));
-                    // Log.d(TAG, "Progress: " + (int) ((total * 100) / lengthOfFile));
-
-                    // writing data to file
-                    output.write(data, 0, count);
-                }
-
-                // flushing output
-                output.flush();
-
-                // closing streams
-                output.close();
-                input.close();
-                return "Downloaded at: " + folder + fileName;
-
-            } catch (Exception e) {
-                Log.e("Error: ", e.getMessage());
-            }
-
-            return "Something went wrong";
-        }
-    }
-*/
 
 
 }

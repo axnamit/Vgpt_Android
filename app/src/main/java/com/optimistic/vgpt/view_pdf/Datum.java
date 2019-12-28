@@ -9,12 +9,15 @@ public class Datum {
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("module_id")
+    @SerializedName("class_id")
     @Expose
-    private Integer moduleId;
-    @SerializedName("File_path")
+    private String classId;
+    @SerializedName("subject_id")
     @Expose
-    private String filePath;
+    private Integer subjectId;
+    @SerializedName("File")
+    @Expose
+    private String file;
 
     public Integer getId() {
         return id;
@@ -24,19 +27,28 @@ public class Datum {
         this.id = id;
     }
 
-    public Integer getModuleId() {
-        return moduleId;
+    public String getClassId() {
+        return classId;
     }
 
-    public void setModuleId(Integer moduleId) {
-        this.moduleId = moduleId;
+    public void setClassId(String classId) {
+        this.classId = classId;
     }
 
-    public String getFilePath() {
-        return filePath;
+    public Integer getSubjectId() {
+        return subjectId;
     }
 
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
+    public void setSubjectId(Integer subjectId) {
+        this.subjectId = subjectId;
     }
+
+    public String getFile() {
+        return file;
+    }
+
+    public void setFile(String file) {
+        this.file = file;
+    }
+
 }

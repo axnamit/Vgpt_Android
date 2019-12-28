@@ -33,7 +33,7 @@ public class Modules extends AppCompatActivity {
     SelectChapterAdapter selectChapterAdapter;
     List<Datum> datumList = new ArrayList<>();
     private Service service;
-    private String id;
+    private String class_id, subject_id, languge_id;
     KProgressHUD hud;
     private AdView mAdView;
 
@@ -52,7 +52,10 @@ public class Modules extends AppCompatActivity {
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
         service = new RetrofitSdk.Builder().build(this).getService();
-        id = String.valueOf(Singleton.getInstance().getSubjectId());
+        class_id = String.valueOf(Singleton.getInstance().getClassId());
+        subject_id = String.valueOf(Singleton.getInstance().getSubjectId());
+
+        languge_id = String.valueOf(Singleton.getInstance().getMedium());
         hud = new KProgressHUD(Modules.this)
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
                 .setLabel("Please wait")
@@ -75,8 +78,12 @@ public class Modules extends AppCompatActivity {
 
     private void addChapter() {
         HashMap<String, String> mudulesId = new HashMap<>();
-
-        mudulesId.put("subject_id", id);
+/*class:10
+subject:25
+language*/
+        mudulesId.put("class", class_id);
+        mudulesId.put("subject", subject_id);
+        mudulesId.put("language", languge_id);
         service.selectModulePojo(mudulesId).enqueue(new Callback<SelectModulesPojo>() {
             @Override
             public void onResponse(Call<SelectModulesPojo> call, Response<SelectModulesPojo> response) {

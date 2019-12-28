@@ -11,18 +11,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.optimistic.vgpt.ChooseSubjects.Language;
 import com.optimistic.vgpt.R;
+import com.optimistic.vgpt.modules_subject.Modules;
 import com.optimistic.vgpt.utility.Singleton;
 import com.optimistic.vgpt.view_pdf.ViewPdfPage;
 
 import java.util.List;
 
 public class ChooseMediumAdapter extends RecyclerView.Adapter<ChooseMediumAdapter.MyViewHolder> {
-    List<Data> dataList;
+    List<Language> dataList;
     Context context;
 
 
-    public ChooseMediumAdapter(ChooseMedium chooseMedium, List<Data> data) {
+    public ChooseMediumAdapter(ChooseMedium chooseMedium, List<Language> data) {
         this.context=chooseMedium;
         this.dataList=data;
 
@@ -36,12 +38,12 @@ public class ChooseMediumAdapter extends RecyclerView.Adapter<ChooseMediumAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Data data=dataList.get(position);
-        holder.button.setText(data.getName());
+        Language data=dataList.get(position);
+        holder.button.setText(data.getLanguageName());
         holder.button.setOnClickListener(view -> {
-            Intent intent=new Intent(context, ViewPdfPage.class);
+            Intent intent=new Intent(context, Modules.class);
 
-            Singleton.getInstance().setMedium(data.getId());
+            Singleton.getInstance().setMedium(data.getLanguageId());
 
             context.startActivity(intent);
         });

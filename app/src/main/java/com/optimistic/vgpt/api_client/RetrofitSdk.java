@@ -28,7 +28,7 @@ public class RetrofitSdk {
          */
         public RetrofitSdk build(Context context) {
             Retrofit retrofit = null;
-            String baseUrlw="http://ec2-18-223-205-195.us-east-2.compute.amazonaws.com/vgpt/api/";
+            String baseUrlw="http://ec2-18-218-155-35.us-east-2.compute.amazonaws.com/vgpt/api/";
             //String baseUrl = context.getResources().getString(R.string.base_url);
             if (InterceptorHTTPClientCreator.getOkHttpClient() != null) {
                 retrofit = new Retrofit.Builder()

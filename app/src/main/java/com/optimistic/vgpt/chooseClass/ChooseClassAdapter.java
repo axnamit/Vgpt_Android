@@ -6,8 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.optimistic.vgpt.ChooseSubjects.ChooseSubjectsActivity;
@@ -31,15 +33,15 @@ public class ChooseClassAdapter extends RecyclerView.Adapter<ChooseClassAdapter.
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_class,parent,false);
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_item,parent,false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         final Datum datum=data.get(position);
-        holder.button.setText(datum.getClassName());
-        holder.button.setOnClickListener(new View.OnClickListener() {
+        holder.textString.setText(datum.getClass_());
+        holder.CLID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(context, ChooseSubjectsActivity.class);
@@ -57,10 +59,14 @@ public class ChooseClassAdapter extends RecyclerView.Adapter<ChooseClassAdapter.
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        Button button;
+        //Button button;
+        TextView textString;
+        ConstraintLayout CLID;
         public MyViewHolder(View view) {
             super(view);
-            button=view.findViewById(R.id.btn1);
+            textString=view.findViewById(R.id.textString);
+            CLID=view.findViewById(R.id.CLID);
+
 
 
         }

@@ -19,10 +19,10 @@ public interface Service {
 
     /* @GET("subjects/{id}")
      Call<ChooseSubjectsPojo> chooseSuject(@Path("id") String id);*/
-    @GET("subjects")
+    @POST("subjects")
     Call<ChooseSubjectsPojo> chooseSubject(@QueryMap(encoded = true) HashMap<String, String> class_id);
 
-    @GET("modules")
+    @POST("modules")
     Call<SelectModulesPojo> selectModulePojo(@QueryMap(encoded = true) HashMap<String, String> modulesss);
 
     /*@GET("modules/{id}")

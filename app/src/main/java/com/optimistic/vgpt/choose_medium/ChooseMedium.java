@@ -1,13 +1,10 @@
 package com.optimistic.vgpt.choose_medium;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -15,6 +12,7 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.kaopiz.kprogresshud.KProgressHUD;
+import com.optimistic.vgpt.ChooseSubjects.Language;
 import com.optimistic.vgpt.R;
 import com.optimistic.vgpt.utility.Singleton;
 
@@ -26,7 +24,7 @@ public class ChooseMedium extends AppCompatActivity {
     private String id;
     ChooseMediumAdapter chooseMediumAdapter;
     RecyclerView recyclerView;
-    List<Data> data=new ArrayList<>();
+    List<Data> data = new ArrayList<>();
     KProgressHUD kProgressHUD;
     private AdView mAdView;
 
@@ -46,7 +44,7 @@ public class ChooseMedium extends AppCompatActivity {
         mAdView.loadAd(adRequest);
 
         Bundle extras = getIntent().getExtras();
-        kProgressHUD=new KProgressHUD(ChooseMedium.this)
+        kProgressHUD = new KProgressHUD(ChooseMedium.this)
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
                 .setLabel("Please wait")
 //                .setDetailsLabel("Downloading data")
@@ -59,17 +57,16 @@ public class ChooseMedium extends AppCompatActivity {
             Log.d( "onCreate: ",id);
             Toast.makeText(this, ""+id, Toast.LENGTH_SHORT).show();
         }*/
-
-        recyclerView=findViewById(R.id.selectMedium);
-        chooseMediumAdapter=new ChooseMediumAdapter(ChooseMedium.this,data);
+        List<Language> languages = Singleton.getInstance().getLanguage();
+        recyclerView = findViewById(R.id.selectMedium);
+        chooseMediumAdapter = new ChooseMediumAdapter(ChooseMedium.this, languages);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(chooseMediumAdapter);
-        addData();
 
-
+        kProgressHUD.dismiss();
     }
 
-    private void addData() {
+   /* private void addData() {
         Data dataa=new Data("Hindi","hindi");
         Data data1=new Data("English","english");
 
@@ -78,6 +75,6 @@ public class ChooseMedium extends AppCompatActivity {
         chooseMediumAdapter.notifyDataSetChanged();
         kProgressHUD.dismiss();
 
-    }
+    }*/
 
 }

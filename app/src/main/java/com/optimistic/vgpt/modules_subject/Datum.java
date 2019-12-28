@@ -9,12 +9,15 @@ public class Datum {
     @SerializedName("id")
     @Expose
     private Integer id;
+    @SerializedName("class_id")
+    @Expose
+    private Integer classId;
     @SerializedName("subject_id")
     @Expose
     private Integer subjectId;
-    @SerializedName("module_name")
+    @SerializedName("module")
     @Expose
-    private String moduleName;
+    private String module;
 
     public Integer getId() {
         return id;
@@ -22,6 +25,14 @@ public class Datum {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getClassId() {
+        return classId;
+    }
+
+    public void setClassId(Integer classId) {
+        this.classId = classId;
     }
 
     public Integer getSubjectId() {
@@ -32,11 +43,12 @@ public class Datum {
         this.subjectId = subjectId;
     }
 
-    public String getModuleName() {
-        return moduleName;
+    public String getModule() {
+        return module;
     }
 
-    public void setModuleName(String moduleName) {
-        this.moduleName = moduleName;
+    public void setModule(String module) {
+        this.module = module;
     }
+
 }

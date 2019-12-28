@@ -1,5 +1,7 @@
+
 package com.optimistic.vgpt.ChooseSubjects;
 
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -11,9 +13,12 @@ public class Datum {
     @SerializedName("class_id")
     @Expose
     private Integer classId;
-    @SerializedName("subject_name")
+    @SerializedName("language")
     @Expose
-    private String subjectName;
+    private List<Language> language = null;
+    @SerializedName("subject")
+    @Expose
+    private String subject;
 
     public Integer getId() {
         return id;
@@ -31,11 +36,20 @@ public class Datum {
         this.classId = classId;
     }
 
-    public String getSubjectName() {
-        return subjectName;
+    public List<Language> getLanguage() {
+        return language;
     }
 
-    public void setSubjectName(String subjectName) {
-        this.subjectName = subjectName;
+    public void setLanguage(List<Language> language) {
+        this.language = language;
     }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
 }

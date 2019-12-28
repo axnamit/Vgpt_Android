@@ -5,13 +5,12 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Datum {
-
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("class_name")
+    @SerializedName("class")
     @Expose
-    private String className;
+    private String _class;
 
     public Integer getId() {
         return id;
@@ -21,11 +20,12 @@ public class Datum {
         this.id = id;
     }
 
-    public String getClassName() {
-        return className;
+    public String getClass_() {
+        return _class;
     }
 
-    public void setClassName(String className) {
-        this.className = className;
+    public void setClass_(String _class) {
+        this._class = _class;
     }
+
 }

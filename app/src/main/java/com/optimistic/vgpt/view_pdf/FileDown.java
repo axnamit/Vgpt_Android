@@ -40,5 +40,4 @@ public class FileDown {
         this.message = message;
     }
 
-
 }

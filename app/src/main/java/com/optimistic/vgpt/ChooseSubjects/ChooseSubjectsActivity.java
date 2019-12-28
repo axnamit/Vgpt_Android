@@ -90,7 +90,7 @@ public class ChooseSubjectsActivity extends AppCompatActivity {
 
     public void apiCall() {
         HashMap<String, String> class_id = new HashMap<>();
-        class_id.put("class_id", id);
+        class_id.put("class", id);
 
         service.chooseSubject(class_id).enqueue(new Callback<ChooseSubjectsPojo>() {
             @Override

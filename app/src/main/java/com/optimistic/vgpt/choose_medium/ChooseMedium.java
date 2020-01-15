@@ -34,6 +34,10 @@ public class ChooseMedium extends AppCompatActivity {
         setContentView(R.layout.activity_choose_medium);
 
 
+        findViewById(R.id.imageView2).setOnClickListener(view -> {
+            finish();
+        });
+
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {

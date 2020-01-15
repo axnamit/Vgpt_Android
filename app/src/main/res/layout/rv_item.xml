@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-		xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		xmlns:app="http://schemas.android.com/apk/res-auto"
 		xmlns:tools="http://schemas.android.com/tools"
-		android:background="#E9E7E7"
-		android:orientation="vertical"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="wrap_content"
+		android:background="#E9E7E7"
+		android:orientation="vertical">
 	
 	<com.google.android.material.card.MaterialCardView
 			android:layout_width="0dp"
@@ -50,6 +49,6 @@
 					app:srcCompat="@drawable/forward" />
 		</androidx.constraintlayout.widget.ConstraintLayout>
 	</com.google.android.material.card.MaterialCardView>
-	
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

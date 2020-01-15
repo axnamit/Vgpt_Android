@@ -5,6 +5,7 @@
 		android:id="@+id/linearLayout2"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:background="#E9E7E7"
 		android:orientation="vertical">
 	
 	<androidx.appcompat.widget.AppCompatButton
@@ -14,9 +15,13 @@
 			android:layout_marginStart="16dp"
 			android:layout_marginTop="16dp"
 			android:layout_marginEnd="16dp"
+			
 			android:layout_marginBottom="16dp"
-			android:background="@color/voilet"
-			android:textColor="@color/white"
+			android:background="@color/white"
+			android:drawableRight="@drawable/forward"
+			android:paddingLeft="20dp"
+			android:textAlignment="textStart"
+			android:textColor="#000000"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="0.5"

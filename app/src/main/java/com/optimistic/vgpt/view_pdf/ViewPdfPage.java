@@ -190,7 +190,7 @@ module:52*/
     }
 
 
-    private class RetrivePDFStream extends AsyncTask<String, Void, InputStream> {
+    private class RetrivePDFStream extends AsyncTask<String, Integer, InputStream> {
 
         @Override
         protected InputStream doInBackground(String... strings) {
@@ -208,6 +208,12 @@ module:52*/
                 return null;
             }
             return inputStream;
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+            hud.setProgress(values[0]);
         }
 
         @Override

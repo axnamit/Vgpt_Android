@@ -1,15 +1,8 @@
 package com.optimistic.vgpt.ChooseSubjects;
 
-import android.content.Intent;
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,13 +18,13 @@ import com.optimistic.vgpt.api_client.RetrofitSdk;
 import com.optimistic.vgpt.api_client.Service;
 import com.optimistic.vgpt.utility.Singleton;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ChooseSubjectsActivity extends AppCompatActivity {
     String id;
@@ -47,7 +40,9 @@ public class ChooseSubjectsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_subjects);
 
-
+        findViewById(R.id.imageView2).setOnClickListener(view -> {
+            finish();
+        });
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {

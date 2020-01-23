@@ -14,21 +14,28 @@
 			android:supportsRtl="true"
 			android:theme="@style/AppTheme"
 			android:usesCleartextTraffic="true">
+		<activity android:name=".file_view_list.FileListView"></activity>
+		
 		<meta-data
 				android:name="com.google.android.gms.ads.APPLICATION_ID"
-				android:value="ca-app-pub-3940256099942544~3347511713"/>
+				android:value="ca-app-pub-3940256099942544~3347511713" />
 		
-		<activity android:name=".choose_medium.ChooseMedium"
-				android:screenOrientation="portrait"></activity>
+		<activity
+				android:name=".choose_medium.ChooseMedium"
+				android:screenOrientation="portrait" />
 		<activity android:name=".view_pdf.ViewPdfPage" />
-		<activity android:name=".modules_subject.Modules"
-				android:screenOrientation="portrait"/>
-		<activity android:name=".ChooseSubjects.ChooseSubjectsActivity"
-				android:screenOrientation="portrait"/>
-		<activity android:name=".base_class_menu.BaseActivity"
-				android:screenOrientation="portrait"/>
-		<activity android:name=".chooseClass.ChooseClass2"
-				android:screenOrientation="portrait"/>
+		<activity
+				android:name=".modules_subject.Modules"
+				android:screenOrientation="portrait" />
+		<activity
+				android:name=".ChooseSubjects.ChooseSubjectsActivity"
+				android:screenOrientation="portrait" />
+		<activity
+				android:name=".base_class_menu.BaseActivity"
+				android:screenOrientation="portrait" />
+		<activity
+				android:name=".chooseClass.ChooseClass2"
+				android:screenOrientation="portrait" />
 		<activity
 				android:name=".MainActivity"
 				android:screenOrientation="portrait">

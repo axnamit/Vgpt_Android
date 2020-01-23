@@ -3,7 +3,7 @@ package com.optimistic.vgpt.api_client;
 import com.optimistic.vgpt.ChooseSubjects.ChooseSubjectsPojo;
 import com.optimistic.vgpt.chooseClass.ChooseClassPojo;
 import com.optimistic.vgpt.modules_subject.SelectModulesPojo;
-import com.optimistic.vgpt.view_pdf.FileDown;
+import com.optimistic.vgpt.file_view_list.FileDown;
 
 import retrofit2.Call;
 import retrofit2.http.*;

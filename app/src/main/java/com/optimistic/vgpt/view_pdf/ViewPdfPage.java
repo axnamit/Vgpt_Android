@@ -83,7 +83,7 @@ module:52*/
 
             @Override
             public void onAdClosed() {
-               // Toast.makeText(ViewPdfPage.this, "add is closed", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(ViewPdfPage.this, "add is closed", Toast.LENGTH_SHORT).show();
                 // startGame();
             }
         });
@@ -117,7 +117,9 @@ module:52*/
                 .show();
         service = new RetrofitSdk.Builder().build(this).getService();
         // pdfView = findViewById(R.id.pdfView);
-        urilFecth();
+        uril = Singleton.getInstance().getFileUrl();
+        new RetrivePDFStream().execute(uril);
+        //urilFecth();
         // uril = "https://doc-04-8s-docs.googleusercontent.com/docs/securesc/9rptkuji8i7vvqes07b8nj908k0vfll3/bfr9a30s9bfl0oj5t485usc84pmtbjrv/1567951200000/07736838083722035363/03801785428433479217/0B8hXbvn1ab-BQ0NHVUpYV2NNNVE?e=download";
 
     }
@@ -127,67 +129,12 @@ module:52*/
         if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
             mInterstitialAd.show();
         } else {
-           // Toast.makeText(this, "Ad did not load", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(this, "Ad did not load", Toast.LENGTH_SHORT).show();
             //startGame();
         }
     }
 
-   /* private void startGame() {
-        // Request a new ad if one isn't already loaded, hide the button, and kick off the timer.
-        if (!mInterstitialAd.isLoading() && !mInterstitialAd.isLoaded()) {
-            AdRequest adRequest = new AdRequest.Builder().build();
-            mInterstitialAd.loadAd(adRequest);
-        }
 
-        //retryButton.setVisibility(View.INVISIBLE);
-        //resumeGame(GAME_LENGTH_MILLISECONDS);
-    }*/
-
-
-    private void urilFecth() {
-        HashMap<String, String> files = new HashMap<>();
-
-
-        files.put("class", classs);
-        files.put("subject", subject);
-        files.put("module", module_id);
-
-        service.fileDownload(files).enqueue(new Callback<FileDown>() {
-            @Override
-            public void onResponse(Call<FileDown> call, Response<FileDown> response) {
-                if (response.isSuccessful()) {
-                    if (response.body() != null) {
-                        if (response.body().getStatus()) {
-                            if (response.body().getData() != null) {
-                                if (response.body().getData() != null) {
-                                    uril = response.body().getData().get(0).getFile();
-                                    new RetrivePDFStream().execute(uril);
-                                    //view_file(uril);
-                                    //browser.loadUrl(uril);
-                                    //new RetrivePDFStream().execute(uril);
-                                    //hud.dismiss();
-                                } else {
-                                    hud.dismiss();
-                                    Toast.makeText(ViewPdfPage.this, "file not found ", Toast.LENGTH_SHORT).show();
-                                }
-
-
-                                /*String hh=response.body().getData().get(0).getFileUrl();
-                                uril=hh.replaceAll("\\\"","");*/
-
-                            }
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<FileDown> call, Throwable t) {
-
-            }
-        });
-
-    }
 
 
     private class RetrivePDFStream extends AsyncTask<String, Integer, InputStream> {
@@ -218,7 +165,7 @@ module:52*/
 
         @Override
         protected void onPostExecute(InputStream inputStream) {
-           // Toast.makeText(ViewPdfPage.this, "" + inputStream.toString(), Toast.LENGTH_SHORT).show();
+            // Toast.makeText(ViewPdfPage.this, "" + inputStream.toString(), Toast.LENGTH_SHORT).show();
 
             pdfView.fromStream(inputStream).load();
             hud.dismiss();

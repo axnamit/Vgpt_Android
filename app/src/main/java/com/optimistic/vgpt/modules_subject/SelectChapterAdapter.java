@@ -12,6 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.optimistic.vgpt.R;
+import com.optimistic.vgpt.file_view_list.FileListView;
 import com.optimistic.vgpt.utility.Singleton;
 import com.optimistic.vgpt.view_pdf.ViewPdfPage;
 
@@ -40,10 +41,11 @@ public class SelectChapterAdapter extends RecyclerView.Adapter<SelectChapterAdap
         holder.button.setText(datum.getModule());
 
         holder.button.setOnClickListener(View->{
-            Intent intent=new Intent(context, ViewPdfPage.class);
+            Intent intent=new Intent(context, FileListView.class);
             Singleton.getInstance().setModule(datum.getId());
             System.out.println("id"+datum.getId()+"  "+"subjectId"+datum.getSubjectId());
             //intent.putExtra("module_id",String.valueOf(datum.getId()));
+//            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
 
         });

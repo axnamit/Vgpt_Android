@@ -2,6 +2,8 @@ package com.optimistic.vgpt.utility;
 
 import com.optimistic.vgpt.ChooseSubjects.Language;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.List;
 
 public class Singleton {
@@ -11,6 +13,7 @@ public class Singleton {
     private Integer subjectId;
     private List<Language> language;
     private Integer module;
+    private String fileUrl;
 
 
     public static Singleton getInstance() {
@@ -59,5 +62,12 @@ public class Singleton {
 
     public Integer getModule() {
         return module;
+    }
+
+    public void setFileUrl(@Nullable String file) {
+        this.fileUrl=file;
+    }
+    public String getFileUrl(){
+        return fileUrl;
     }
 }
